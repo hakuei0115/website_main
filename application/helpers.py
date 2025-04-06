@@ -1,9 +1,8 @@
-# Helper functions
-
 import requests
 import json
 import os
-
+from openai import OpenAI
+from openai.types.chat import ChatCompletionMessageParam
 from config import TEXT_PATH
 
 
@@ -41,7 +40,6 @@ def get_repositories() -> list:
     """Returns a list of dictionaries which contains information about each public repository on my GitHub profile."""
 
     github_token = os.environ["GITHUB_ACCESS"]
-
     url = "https://api.github.com/users/hakuei0115/repos"
     params = {"per_page": 1000}
     headers = {"Authorization": f"token {github_token}"}
@@ -101,3 +99,33 @@ def get_language_image(language:str) -> str:
         for card in data.get("cards", []):
             if card.get("type") == "language" and card.get("title", "").lower() == language.lower():
                 return card.get("image")
+            
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+def generate_text(prompt: str) -> str:
+    try:
+        messages: list[ChatCompletionMessageParam] = [
+            {
+                "role": "system",
+                "content": (
+                    "你是一位有趣又資深的全端工程師，擅長用淺顯易懂的方式教初學者前後端技術，"
+                    "請用繁體中文回答使用者的問題。"
+                )
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+
+        response = client.chat.completions.create(
+            model=os.getenv("OPENAI_MODEL", "gpt-4o-mini-2024-07-18"),
+            messages=messages,
+            temperature=0.7,
+        )
+
+        return response.choices[0].message.content.strip()
+
+    except Exception as e:
+        print(f"OpenAI Error: {e}")
+        return "系統錯誤，請稍後再試～"

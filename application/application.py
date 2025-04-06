@@ -1,6 +1,6 @@
 # Sets up the routes for all the pages
 
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, jsonify
 from flask_caching import Cache
 from config import TEMPLATES_PATH, TEXT_PATH
 from application.helpers import *
@@ -19,10 +19,6 @@ cache = Cache(app)
 def loading():
     """Renders the 'Loading' page of the website."""
 
-    #response = make_response(render_template("loading.html"))
-    #response.headers["Cache-Control"] = "public, max-age=3"
-
-    #return response
     return render_template("home.html")
 
 
@@ -33,6 +29,15 @@ def home():
 
     return render_template("home.html")
 
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_input = request.json.get("message", "")
+    if not user_input:
+        return jsonify({"error": "Empty message"}), 400
+
+    reply = generate_text(user_input)
+    
+    return jsonify({"reply": reply})
 
 @app.route("/about")
 @cache.cached()

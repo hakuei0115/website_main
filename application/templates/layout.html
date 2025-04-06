@@ -21,6 +21,7 @@
             <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
             <!-- CSS Style -->
             <link href="../static/css/styles.css" rel="stylesheet">
+            <link href="../static/css/chatbot.css" rel="stylesheet">
         {% endblock %}
         <!-- Title -->
         <title>{% block title %}{% endblock %}</title>
@@ -64,10 +65,63 @@
                     <div class="col-sm-12">
                         <a href="https://github.com/hakuei0115" target="_blank"><i class="social-icon bx bxl-github px-1"></i></a>
                         <a href="https://www.linkedin.com/in/%E6%9F%8F%E5%8F%A1-%E6%9E%97-b95139306/" target="_blank"><i class="social-icon bx bxl-linkedin px-1"></i></a>
+                        <div id="chatbot-toggle">💬</div>
+                            <div id="chatbot-window" style="display: none;">
+                            <div id="chatbot-header">客服小幫手</div>
+                            <div id="chatbot-messages"></div>
+                            <input type="text" id="chatbot-input" placeholder="請輸入訊息..." />
+                        </div>
                     </div>
                 </div>
             </div>
         </footer>
+        
+
         <!-- End of Footer -->
     </body>
 </html>
+
+<script>
+    const toggle = document.getElementById("chatbot-toggle");
+    const windowBox = document.getElementById("chatbot-window");
+    const input = document.getElementById("chatbot-input");
+    const messages = document.getElementById("chatbot-messages");
+
+    let chatbotInitialized = false;
+
+    toggle.onclick = () => {
+        const isVisible = windowBox.style.display === "block";
+        windowBox.style.display = isVisible ? "none" : "block";
+
+        // 如果是第一次開啟，加入歡迎訊息
+        if (!isVisible && !chatbotInitialized) {
+            appendMessage("bot", "嗨～我是你的 AI 客服助手，可以幫你解答技術問題、導覽網站、或介紹作品集內容唷！"); 
+            chatbotInitialized = true;
+        }
+    };
+
+    input.addEventListener("keypress", async (e) => {
+        if (e.key === "Enter") {
+            const msg = input.value.trim();
+            if (!msg) return;
+            appendMessage("user", msg);
+            input.value = "";
+            const res = await fetch("/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: msg }),
+            });
+            const data = await res.json();
+            appendMessage("bot", data.reply);
+        }
+    });
+
+    function appendMessage(sender, text) {
+        const div = document.createElement("div");
+        div.className = sender === "user" ? "user-msg" : "bot-msg";
+        div.textContent = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    }
+</script>
+
