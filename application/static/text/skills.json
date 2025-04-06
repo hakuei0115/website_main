@@ -36,14 +36,44 @@
             "type": "language"
         },
         {
+            "image": "https://img.icons8.com/color/256/react-native.png",
+            "title": "React",
+            "type": "framework"
+        },
+        {
+            "image": "https://img.icons8.com/?size=100&id=nvrsJYs7j9Vb&format=png&color=000000",
+            "title": "Nuxt.js",
+            "type": "framework"
+        },
+        {
+            "image": "https://img.icons8.com/color/256/nodejs.png",
+            "title": "Node.js",
+            "type": "framework"
+        },
+        {
+            "image": "https://img.icons8.com/color/256/express-js.png",
+            "title": "Express.js",
+            "type": "framework"
+        },
+        {
+            "image": "https://img.icons8.com/color/256/vue-js.png",
+            "title": "Vue.js",
+            "type": "framework"
+        },
+        {
             "image": "https://img.icons8.com/ios/256/flask.png",
             "title": "Flask",
             "type": "framework"
         },
         {
-            "image": "https://img.icons8.com/color/256/pandas.png",
-            "title": "Pandas",
-            "type": "library"
+            "image": "https://img.icons8.com/color/256/tailwindcss.png",
+            "title": "Tailwind CSS",
+            "type": "framework"
+        },
+        {
+            "image": "https://img.icons8.com/color/256/sass.png",
+            "title": "Sass",
+            "type": "framework"
         },
         {
             "image": "https://img.icons8.com/color/256/bootstrap.png",

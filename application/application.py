@@ -39,9 +39,7 @@ def home():
 def about():
     """Renders the 'About Me' page of the website."""
 
-    content = read_description(f"{TEXT_PATH}/about.txt")
-
-    return render_template("about.html", content=content)
+    return render_template("about.html")
 
 
 @app.route("/skills")

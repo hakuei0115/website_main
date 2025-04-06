@@ -26,56 +26,23 @@
         <!-- End of Title -->
         <!-- Row -->
         <div class="row flex-wrap align-content-center justify-content-center">
-            <!-- 1st Column -->
             <div class="col-md-6 d-flex">
                 <div class="card description-card card-design">
                     <div class="card-body">
                         <div class="border-0 mb-3">
                             <div class="card-body text-center">
-                                <p class="first-paragraph">{{ content[0] }}</p>
-                            </div>
-                        </div>
-                        <div class="card inner-card inner-card-design w-100">
-                            <div class="card-body">
-                                {% for paragraph in content[1:] %}
-                                    <p class="paragraph"><i class="arrow bx bxs-right-arrow"></i>{{ paragraph }}</p>
-                                {% endfor %}
+                                <p class="first-paragraph">
+                                    I'm Hakuei, a full stack developer focusing on both front-end and back-end technical development. 
+                                    Worked at the Telecommunications Technology Center, responsible for project website building and planning, 
+                                    and Python automated testing. Currently pursuing a master's degree, 
+                                    he has many years of development experience and is familiar with multiple languages ​​​​such as HTML, CSS, JavaScript, PHP, C/C++, and Python. Currently focusing on learning React and Node.js, 
+                                    and doing research in the field of artificial intelligence.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End of 1st Column -->
-            <!-- 2nd Column -->
-            <div class="col-md-3 mt-md-0 mt-4 d-flex">
-                <div class="card education-card card-design flex-grow-1">
-                    <div class="card-body d-flex flex-column align-items-center">
-                        <div class="border-0 mb-3">
-                            <div class="card-body text-center">
-                                <p class="first-paragraph">Development Education</p>
-                            </div>
-                        </div>
-                        <div class="card inner-card inner-card-design mb-3 w-100 mx-auto">
-                            <div class="card-body text-center">
-                                <strong class="paragraph"><i class="school-name bx bxs-school"> IT School</i></strong>
-                                <p class="paragraph">Python Programming</p>
-                                <p class="text-muted">Apr 2022 - Sep 2022</p><br>
-                            </div>
-                        </div>
-                        <div class="card inner-card inner-card-design mb-3 w-100 mx-auto">
-                            <div class="card-body text-center">
-                                <strong class="paragraph"><i class="school-name bx bx-library"> HarvardX</i></strong>
-                                <p class="paragraph">CS50x - Introduction to Computer Science</p>
-                                <p class="text-muted">Oct 2022 - Present</p>
-                            </div>
-                        </div>
-                        <button class="btn mt-auto mx-auto w-100">
-                            <a href="{{ url_for('contact') }}">CONTACT ME <i class="bx bx-right-arrow-circle px-2"></i></a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- End of 2nd Column -->
         </div>
         <!-- End of Row -->
     </div>

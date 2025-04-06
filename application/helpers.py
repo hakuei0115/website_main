@@ -16,37 +16,6 @@ def is_active(current_path:str, nav_path:str) -> str:
     return ""
 
 
-def read_description(file_path:str) -> list:
-    """Returns the content of a text file as a list of strings where each string is a paragraph."""
-
-    content = []
-
-    try:
-        with open(file_path) as file:
-            current_paragraph = ""
-
-            # Loop over each line
-            for line in file:
-                # Check if the line is blank (i.e. contains only white spaces)
-                if line.strip() == "":
-                    # If so, add the current paragraph to the list and reset current paragraph
-                    content.append(current_paragraph)
-                    current_paragraph = ""
-                # If line is not blank, add it to the current paragraph
-                else:
-                    current_paragraph += line
-
-            # Add the final paragraph to the list
-            if current_paragraph != "":
-                content.append(current_paragraph)
-    except FileNotFoundError:
-        print(f"ERROR! File could not be found for path: {file_path}.")
-    except Exception as error:
-        print(f"ERROR! {error}.")
-
-    return content
-
-
 def get_skills(file_path:str) -> tuple:
     """Returns three lists one for each type of cards in the JSON file."""
 
